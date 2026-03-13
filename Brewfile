@@ -13,6 +13,9 @@ brew "ruby"
 brew "watchman"
 brew "xcodes"
 
+# Fonts
+cask "font-hack-nerd-font"
+
 # GUI apps: terminal and editors
 cask "warp"
 cask "visual-studio-code"

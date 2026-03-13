@@ -1,0 +1,77 @@
+{
+  // --- Editor ---
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize",
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "solid",
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.fontLigatures": false,
+  "editor.guides.indentation": false,
+  "editor.language.brackets": [],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // --- Language formatters ---
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // --- Git ---
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "git.enableSmartCommit": true,
+  "git.fetchOnPull": true,
+  "git.rebaseWhenSync": true,
+  "git.ignoreMissingGitWarning": true,
+  "git.ignoreRebaseWarning": true,
+  "git.confirmSync": false,
+  "git.mergeEditor": false,
+  "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "merge-conflict.diffViewPosition": "Beside",
+
+  // --- Workbench ---
+  "workbench.colorTheme": "Night Owl",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.startupEditor": "none",
+  "workbench.editor.wrapTabs": true,
+
+  // --- Terminal ---
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "terminal.external.osxExec": "Warp.app",
+
+  // --- Breadcrumbs / search ---
+  "breadcrumbs.filePath": "last",
+  "search.showLineNumbers": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  // --- Zen mode ---
+  "zenMode.hideActivityBar": false,
+
+  // --- Security ---
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // --- GitLens ---
+  "gitlens.defaultTimeFormat": "",
+
+  // --- Error Lens ---
+  "errorLens.enabled": true,
+  "errorLens.enabledDiagnosticLevels": ["info"],
+
+  // --- DotENV file associations ---
+  "files.associations": {
+    ".env": "dotenv",
+    ".env.*": "dotenv"
+  }
+}

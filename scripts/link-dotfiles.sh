@@ -39,5 +39,13 @@ mkdir -p "$HOME/.claude"
 backup_and_link "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json" "claude_settings"
 backup_and_link "$DOTFILES_DIR/claude/skills" "$HOME/.claude/skills" "claude_skills"
 
+VSCODE_USER="$HOME/Library/Application Support/Code/User"
+mkdir -p "$VSCODE_USER"
+backup_and_link "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_USER/settings.json" "vscode_settings"
+backup_and_link "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_USER/keybindings.json" "vscode_keybindings"
+
+mkdir -p "$HOME/.config/gh"
+backup_and_link "$DOTFILES_DIR/gh/config.yml" "$HOME/.config/gh/config.yml" "gh_config"
+
 chmod 700 "$HOME/.ssh" "$HOME/.aws"
 chmod 600 "$HOME/.ssh/config" "$HOME/.aws/config"

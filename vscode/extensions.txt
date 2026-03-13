@@ -1,0 +1,21 @@
+# Linting & formatting
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+
+# Git
+eamodio.gitlens
+
+# Markdown
+yzhang.markdown-all-in-one
+
+# Theme & icons
+sdras.night-owl
+vscode-icons-team.vscode-icons
+
+# Productivity
+usernamehm.error-lens
+mikestead.dotenv
+formulahendry.auto-rename-tag
+
+# AI
+anthropic.claude-code

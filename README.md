@@ -11,6 +11,10 @@ Source of truth for personal macOS setup.
 - `.aws/config`
 - `claude/settings.json`
 - `claude/skills/`
+- `vscode/settings.json`
+- `vscode/keybindings.json`
+- `vscode/extensions.txt`
+- `gh/config.yml`
 - `scripts/bootstrap.sh`
 - `scripts/link-dotfiles.sh`
 - `scripts/setup-shell.sh`
@@ -93,6 +97,22 @@ Store secret values in 1Password entries:
    ```bash
    git -C ~/dotfiles status --short
    ```
+
+## VS Code setup
+Settings and keybindings are symlinked by `link-dotfiles.sh`. Extensions must be installed separately after adding the `code` CLI to PATH.
+
+### 1) Add `code` to PATH
+Open VS Code → `Cmd+Shift+P` → **Shell Command: Install 'code' command in PATH**
+
+### 2) Install extensions
+```bash
+bash ~/dotfiles/scripts/setup-vscode.sh
+```
+
+Extensions are listed in `vscode/extensions.txt`. Add or remove entries there to manage them.
+
+### Note on fonts
+VS Code is configured to use **Hack Nerd Font** in the integrated terminal. This is installed via `Brewfile` (`font-hack-nerd-font`).
 
 ## React Native (iOS) setup
 Run after the main bootstrap. Xcode must be installed first.
