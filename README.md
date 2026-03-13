@@ -15,6 +15,7 @@ Source of truth for personal macOS setup.
 - `vscode/keybindings.json`
 - `vscode/extensions.txt`
 - `gh/config.yml`
+- `symlinks.conf`
 - `scripts/bootstrap.sh`
 - `scripts/link-dotfiles.sh`
 - `scripts/setup-shell.sh`

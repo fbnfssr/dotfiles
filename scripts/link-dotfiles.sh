@@ -4,48 +4,42 @@ set -euo pipefail
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 BACKUP_DIR="${BACKUP_DIR:-$HOME/.dotfiles-backup}"
 TIMESTAMP="$(date +%Y%m%d%H%M%S)"
+CONF="$DOTFILES_DIR/symlinks.conf"
 
-mkdir -p "$BACKUP_DIR" "$HOME/.ssh" "$HOME/.aws"
+if [[ ! -f "$CONF" ]]; then
+  echo "symlinks.conf not found at $CONF" >&2
+  exit 1
+fi
 
-require_path() {
-  local path="$1"
-  if [ ! -e "$path" ]; then
-    echo "Missing: $path" >&2
+mkdir -p "$BACKUP_DIR" \
+  "$HOME/.ssh" "$HOME/.aws" "$HOME/.claude" "$HOME/.config/gh" \
+  "$HOME/Library/Application Support/Code/User"
+
+linked=0
+
+while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
+  [[ -z "$rel_src" || "$rel_src" == \#* ]] && continue
+
+  src="$DOTFILES_DIR/$rel_src"
+  dst="${raw_dst/\$HOME/$HOME}"
+
+  if [[ ! -e "$src" ]]; then
+    echo "Missing source: $src" >&2
     exit 1
   fi
-}
 
-backup_and_link() {
-  local src="$1"
-  local dst="$2"
-  local backup_name="$3"
-
-  require_path "$src"
-
-  if [ -e "$dst" ] || [ -L "$dst" ]; then
+  if [[ -e "$dst" || -L "$dst" ]]; then
+    backup_name="${rel_src//\//_}"
     mv "$dst" "$BACKUP_DIR/${backup_name}.${TIMESTAMP}"
   fi
 
   ln -sfn "$src" "$dst"
-}
-
-backup_and_link "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc" ".zshrc"
-backup_and_link "$DOTFILES_DIR/.p10k.zsh" "$HOME/.p10k.zsh" ".p10k.zsh"
-backup_and_link "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig" ".gitconfig"
-backup_and_link "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global" ".gitignore_global"
-backup_and_link "$DOTFILES_DIR/.ssh/config" "$HOME/.ssh/config" "ssh_config"
-backup_and_link "$DOTFILES_DIR/.aws/config" "$HOME/.aws/config" "aws_config"
-mkdir -p "$HOME/.claude"
-backup_and_link "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json" "claude_settings"
-backup_and_link "$DOTFILES_DIR/claude/skills" "$HOME/.claude/skills" "claude_skills"
-
-VSCODE_USER="$HOME/Library/Application Support/Code/User"
-mkdir -p "$VSCODE_USER"
-backup_and_link "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_USER/settings.json" "vscode_settings"
-backup_and_link "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_USER/keybindings.json" "vscode_keybindings"
-
-mkdir -p "$HOME/.config/gh"
-backup_and_link "$DOTFILES_DIR/gh/config.yml" "$HOME/.config/gh/config.yml" "gh_config"
+  echo "  linked $dst"
+  linked=$((linked + 1))
+done < "$CONF"
 
 chmod 700 "$HOME/.ssh" "$HOME/.aws"
 chmod 600 "$HOME/.ssh/config" "$HOME/.aws/config"
+
+echo ""
+echo "$linked symlinks created."

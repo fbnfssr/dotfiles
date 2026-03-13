@@ -51,17 +51,12 @@ check_cmd codex
 
 echo ""
 echo "==> Symlinks"
-check_symlink "$HOME/.zshrc"            "$DOTFILES_DIR/.zshrc"
-check_symlink "$HOME/.p10k.zsh"         "$DOTFILES_DIR/.p10k.zsh"
-check_symlink "$HOME/.gitconfig"        "$DOTFILES_DIR/.gitconfig"
-check_symlink "$HOME/.gitignore_global" "$DOTFILES_DIR/.gitignore_global"
-check_symlink "$HOME/.ssh/config"             "$DOTFILES_DIR/.ssh/config"
-check_symlink "$HOME/.aws/config"             "$DOTFILES_DIR/.aws/config"
-check_symlink "$HOME/.claude/settings.json"                              "$DOTFILES_DIR/claude/settings.json"
-check_symlink "$HOME/.claude/skills"                                     "$DOTFILES_DIR/claude/skills"
-check_symlink "$HOME/Library/Application Support/Code/User/settings.json"    "$DOTFILES_DIR/vscode/settings.json"
-check_symlink "$HOME/Library/Application Support/Code/User/keybindings.json" "$DOTFILES_DIR/vscode/keybindings.json"
-check_symlink "$HOME/.config/gh/config.yml"                              "$DOTFILES_DIR/gh/config.yml"
+while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
+  [[ -z "$rel_src" || "$rel_src" == \#* ]] && continue
+  src="$DOTFILES_DIR/$rel_src"
+  dst="${raw_dst/\$HOME/$HOME}"
+  check_symlink "$dst" "$src"
+done < "$DOTFILES_DIR/symlinks.conf"
 
 echo ""
 echo "==> Results: $PASS passed, $FAIL failed"
