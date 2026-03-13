@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [],
+    "defaultMode": "acceptEdits"
+  },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true,
+  "model": "sonnet"
+}

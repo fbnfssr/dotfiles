@@ -9,6 +9,8 @@ Source of truth for personal macOS setup.
 - `.gitignore_global`
 - `.ssh/config`
 - `.aws/config`
+- `claude/settings.json`
+- `claude/skills/`
 - `scripts/bootstrap.sh`
 - `scripts/link-dotfiles.sh`
 - `scripts/setup-shell.sh`
