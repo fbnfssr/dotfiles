@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Secrets (never commit)
+.aws/credentials
+.aws/credentials.*
+.ssh/id_*
+.ssh/*.pem
+.env
+.env.*
+.secrets/

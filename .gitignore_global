@@ -1,0 +1,14 @@
+# Backup files (most editors)
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains IDEs (WebStorm, IntelliJ, etc.)
+.idea/
+
+# Vim
+*.swp
+*.swo

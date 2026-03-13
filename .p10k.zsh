@@ -1,0 +1,88 @@
+# Powerlevel10k configuration - Clean & Simple
+# Generated for better readability and maintenance
+
+# ===== PERFORMANCE SETTINGS =====
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_VCS_MAX_INDEX_SIZE_DIRTY=4096
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+
+# ===== PROMPT LAYOUT =====
+typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  os_icon
+  dir
+  vcs
+  newline
+  prompt_char
+)
+
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  status
+  command_execution_time
+  background_jobs
+  nvm
+  rbenv
+  aws
+  time
+)
+
+# ===== GENERAL STYLING =====
+typeset -g POWERLEVEL9K_MODE=ascii  # Use simple ASCII characters instead of nerd fonts
+typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+# ===== VISUAL STYLE - Classic text on dark background =====
+typeset -g POWERLEVEL9K_BACKGROUND=234  # Dark background
+typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
+
+# ===== DIRECTORY SETTINGS =====
+typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_left
+typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+typeset -g POWERLEVEL9K_DIR_FOREGROUND=31  # Blue text for directory
+typeset -g POWERLEVEL9K_DIR_BACKGROUND=234  # Dark background
+
+# ===== VCS (GIT) SETTINGS =====
+typeset -g POWERLEVEL9K_VCS_FOREGROUND=76  # Green text for git
+typeset -g POWERLEVEL9K_VCS_BACKGROUND=234  # Dark background
+# Disable problematic Git status icons - just show branch name
+typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON=''
+typeset -g POWERLEVEL9K_VCS_UNSTAGED_ICON=''
+typeset -g POWERLEVEL9K_VCS_STAGED_ICON=''
+typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=''
+# Hide status counts to avoid symbols
+typeset -g POWERLEVEL9K_VCS_UNTRACKED_MAX_NUM=0
+typeset -g POWERLEVEL9K_VCS_UNSTAGED_MAX_NUM=0
+typeset -g POWERLEVEL9K_VCS_STAGED_MAX_NUM=0
+
+# ===== OS ICON =====
+[[ "$OSTYPE" == darwin* ]] && typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=$'\uf179 '
+typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=234
+typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=255
+
+# ===== PROMPT CHAR =====
+typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_FOREGROUND=76
+typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_FOREGROUND=196
+typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
+
+# ===== STATUS =====
+typeset -g POWERLEVEL9K_STATUS_OK=false  # Hide green checkmark on success
+typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=234
+typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=196
+
+# ===== TIME =====
+typeset -g POWERLEVEL9K_TIME_FOREGROUND=66
+typeset -g POWERLEVEL9K_TIME_BACKGROUND=234
+typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+
+# ===== OTHER RIGHT PROMPT ELEMENTS =====
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=234
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=248
+typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=234
+typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=37
+typeset -g POWERLEVEL9K_NVM_BACKGROUND=234
+typeset -g POWERLEVEL9K_NVM_FOREGROUND=70
+typeset -g POWERLEVEL9K_RBENV_BACKGROUND=234
+typeset -g POWERLEVEL9K_RBENV_FOREGROUND=168
+typeset -g POWERLEVEL9K_AWS_BACKGROUND=234
+typeset -g POWERLEVEL9K_AWS_FOREGROUND=208
