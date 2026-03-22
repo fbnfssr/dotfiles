@@ -2,11 +2,11 @@ tap "homebrew/bundle"
 
 # CLI tools
 brew "awscli"
+brew "bitwarden-cli"
 brew "cocoapods"
 brew "direnv"
 brew "gh"
 brew "git"
-brew "glab"
 brew "nvm"
 brew "python"
 brew "ruby"
@@ -26,15 +26,11 @@ cask "claude"
 cask "codex"
 
 # GUI apps: communication and collaboration
-cask "discord"
-cask "microsoft-teams"
 cask "notion"
-cask "slack"
 
 # GUI apps: browser and API/network tooling
 cask "google-chrome"
 cask "postman"
-cask "proxyman"
 
 # GUI apps: productivity and system
 cask "istat-menus"
@@ -43,6 +39,5 @@ cask "raycast"
 cask "react-native-debugger"
 cask "rectangle"
 
-# GUI apps: security and containers
-cask "1password"
-cask "orbstack"
+# GUI apps: security
+cask "bitwarden"

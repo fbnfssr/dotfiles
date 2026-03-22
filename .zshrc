@@ -61,9 +61,9 @@ npm()  { _load_nvm; npm  "$@"; }
 npx()  { _load_nvm; npx  "$@"; }
 
 # ------------------------------------------
-# 7) System limits
-ulimit -n 200000
+# 7) Aliases
+alias dc='docker compose'
 
 # ------------------------------------------
-# 8) Aliases
-alias dc='docker compose'
+# 8) Local overlay (unversioned — work or machine-specific config)
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

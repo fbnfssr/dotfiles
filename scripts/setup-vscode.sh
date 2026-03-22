@@ -14,7 +14,14 @@ DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 
 if ! command -v code >/dev/null 2>&1; then
   echo "VS Code CLI 'code' not found in PATH." >&2
-  echo "Open VS Code → Cmd+Shift+P → Shell Command: Install 'code' command in PATH" >&2
+  echo "" >&2
+  echo "To enable it:" >&2
+  echo "  1. VS Code will open now (or open it manually)" >&2
+  echo "  2. Press Cmd+Shift+P" >&2
+  echo "  3. Type: Shell Command: Install 'code' command in PATH" >&2
+  echo "  4. Re-run this script afterwards" >&2
+  echo "" >&2
+  open -a "Visual Studio Code" 2>/dev/null || true
   exit 1
 fi
 

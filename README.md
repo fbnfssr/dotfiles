@@ -1,14 +1,17 @@
 # dotfiles
-Source of truth for personal macOS setup.
+
+Personal macOS baseline. This repository is the **personal layer only** — it does not include work tooling, work credentials, or employer-specific configuration.
+
+Work setup is handled separately by an external work bootstrap (see [Work setup](#work-setup)).
 
 ## Files managed by this repository
+
 - `Brewfile`
 - `.zshrc`
 - `.p10k.zsh`
 - `.gitconfig`
 - `.gitignore_global`
 - `.ssh/config`
-- `.aws/config`
 - `claude/settings.json`
 - `claude/skills/`
 - `vscode/settings.json`
@@ -21,8 +24,11 @@ Source of truth for personal macOS setup.
 - `scripts/setup-shell.sh`
 - `scripts/setup-react-native.sh`
 - `scripts/verify.sh`
+- `scripts/list-backups.sh`
+- `scripts/setup-personal-secrets.sh`
 
 ## Full setup (new machine)
+
 Run every step in order.
 
 ### 1) Install Xcode Command Line Tools
@@ -36,71 +42,83 @@ xcode-select --install
 ```
 
 ### 3) Clone this repository
+Clone via HTTPS — SSH keys are not available yet on a fresh machine.
 ```bash
-git clone git@github.com:fbnfssr/dotfiles.git ~/dotfiles
+git clone https://github.com/fbnfssr/dotfiles.git ~/dotfiles
 ```
 
-### 4) Run bootstrap automation
+### 4) Run bootstrap
 ```bash
 bash ~/dotfiles/scripts/bootstrap.sh
 ```
 
-### 5) Restart shell and verify
+### 5) Configure Bitwarden
+Bitwarden Desktop is installed by the Brewfile (via Homebrew cask, not the Mac App Store — the two use different SSH agent socket paths; this repo is configured for the Homebrew install). Open it, sign in to your personal account, then:
+- Go to **Settings → SSH Agent → Enable**
+
+Personal SSH keys must be stored in your Bitwarden vault as SSH Key items. The `.ssh/config` is configured to use the Bitwarden SSH agent at `~/.bitwarden-ssh-agent.sock` — no key files on disk needed.
+
+### 6) Restore personal secrets
+```bash
+bash ~/dotfiles/scripts/setup-personal-secrets.sh
+```
+This script:
+- Unlocks the Bitwarden vault via `bw`
+- Generates `~/.aws/config` with the personal `ff-digital` profile
+- Fetches AWS credentials from Bitwarden and writes `~/.aws/credentials`
+- Validates the Bitwarden SSH agent and tests `github-perso` SSH connectivity
+
+### 7) Switch remote to SSH
+```bash
+git -C ~/dotfiles remote set-url origin git@github-perso:fbnfssr/dotfiles.git
+```
+
+### 8) Restart shell and verify
 ```bash
 exec zsh
 bash ~/dotfiles/scripts/verify.sh
 ```
 
-What bootstrap does:
-- installs all packages from `Brewfile`
-- backs up and symlinks all managed dotfiles
-- installs Oh-My-Zsh, Powerlevel10k, and shell plugins
-- installs Node LTS with `nvm`
-- activates Yarn Berry (v4+) through Corepack
-- installs Claude Code CLI
-- installs Codex (via Homebrew cask)
+## Local overlay files
 
-## Personal GitHub identity (dotfiles repo)
-Run after cloning:
+These files are unversioned and machine-specific. They are sourced/included automatically when present:
 
-```bash
-git -C ~/dotfiles config user.name "Fabien Fouassier"
-git -C ~/dotfiles config user.email "<your-personal-email>"
-git -C ~/dotfiles remote -v
-git -C ~/dotfiles config --show-origin --get user.email
-```
+| File | Purpose | Who manages it |
+|------|---------|----------------|
+| `~/.zshrc.local` | Shell aliases, env vars, functions | Work bootstrap or manual |
+| `~/.gitconfig.local` | Git identity override (e.g. work email) | Work bootstrap |
+| `~/.ssh/config.local` | Work SSH host entries | Work bootstrap |
 
-## Sensitive data handling plan
-Secrets are never stored in this repository.
+## Work setup
 
-### Secrets stored outside git
-- `~/.aws/credentials`
-- `~/.ssh/id_*`
-- API tokens and private keys
+Work-specific tooling, credentials, and SSH identities are managed by a separate external bootstrap. It lives outside this repository and is employer-independent from the personal dotfiles perspective.
 
-### Storage location
-Store secret values in 1Password entries:
-- AWS credentials
-- SSH private keys
-- npm token
+Discovery: if `~/.work-bootstrap/bootstrap-work.sh` exists and is executable, `bootstrap.sh` will print its path at the end of the personal setup.
 
-### Restore procedure on a new machine
-1. Restore values from 1Password.
-2. Write them into:
-   - `~/.aws/credentials`
-   - `~/.ssh/id_*`
-3. Apply permissions:
-   ```bash
-   chmod 700 ~/.ssh ~/.aws
-   chmod 600 ~/.aws/credentials ~/.ssh/id_* ~/.ssh/config
-   ```
-4. Verify nothing sensitive is staged:
-   ```bash
-   git -C ~/dotfiles status --short
-   ```
+## Secrets management
+
+All personal secrets are stored in Bitwarden. Nothing sensitive is committed to this repository.
+
+### What lives in Bitwarden
+
+- SSH private keys (served via Bitwarden SSH agent — never written to disk)
+- AWS access keys for `ff-digital` (fetched by `setup-personal-secrets.sh`)
+
+### Required Bitwarden vault items
+
+| Item name | Type | Username field | Password field |
+|-----------|------|----------------|---------------|
+| `SSH - GitHub Personal` | SSH Key | — | Private key |
+| `AWS ff-digital` | Login | AWS Access Key ID | AWS Secret Access Key |
+
+### How it works
+
+- **SSH**: `.ssh/config` sets `IdentityAgent` per host to the Bitwarden SSH agent socket. Keys are stored in the vault and offered on demand. No private key files on disk.
+- **AWS**: `setup-personal-secrets.sh` fetches credentials from Bitwarden using `bw` and writes `~/.aws/credentials`.
 
 ## VS Code setup
-Settings and keybindings are symlinked by `link-dotfiles.sh`. Extensions must be installed separately after adding the `code` CLI to PATH.
+
+Settings and keybindings are symlinked by `link-dotfiles.sh`. Extensions must be installed separately.
 
 ### 1) Add `code` to PATH
 Open VS Code → `Cmd+Shift+P` → **Shell Command: Install 'code' command in PATH**
@@ -110,86 +128,67 @@ Open VS Code → `Cmd+Shift+P` → **Shell Command: Install 'code' command in PA
 bash ~/dotfiles/scripts/setup-vscode.sh
 ```
 
-Extensions are listed in `vscode/extensions.txt`. Add or remove entries there to manage them.
-
-### Note on fonts
-VS Code is configured to use **Hack Nerd Font** in the integrated terminal. This is installed via `Brewfile` (`font-hack-nerd-font`).
+Extensions are listed in `vscode/extensions.txt`.
 
 ## React Native (iOS) setup
+
 Run after the main bootstrap. Xcode must be installed first.
 
 ### 1) Install Xcode
 ```bash
 xcodes install --latest --experimental-unxip
 ```
-`xcodes` downloads directly from Apple's CDN with parallel connections — significantly faster than the App Store for a 10+ GB install.
 
 ### 2) Finalise the environment
 ```bash
 bash ~/dotfiles/scripts/setup-react-native.sh
 ```
 
-This sets the active Xcode path, accepts the license, and runs the first-launch setup.
-
 ### 3) Add iOS Simulators (optional)
 ```bash
 xcodes runtimes install 'iOS 18'
 ```
 
-### Tools included in Brewfile for React Native
-- `cocoapods` — dependency manager for iOS native modules
-- `watchman` — file watcher used by Metro bundler
-- `xcodes` — Xcode version and runtime manager
-- `react-native-debugger` — standalone debugger app
+## Dotfile backups
 
-## Git ignore files
-Two ignore files serve different purposes:
-
-- **`.gitignore`** (this repo only): prevents accidentally committing secrets (`~/.aws/credentials`, `~/.ssh/id_*`, `.env*`) or macOS junk from the dotfiles repo itself.
-- **`.gitignore_global`** (all repos on this machine): symlinked to `~/.gitignore_global` and registered in `.gitconfig`. Suppresses editor artifacts (`.idea/`, `*.swp`) and macOS files (`.DS_Store`) globally so you don't need to add them to every project.
-
-## Brewfile maintenance
-Run after app/tool changes:
+When `link-dotfiles.sh` replaces existing files, they are backed up to `~/.dotfiles-backup/<timestamp>/` preserving directory structure.
 
 ```bash
-brew leaves
-brew list --cask
+bash ~/dotfiles/scripts/list-backups.sh
+```
+
+To restore a file:
+```bash
+cp ~/.dotfiles-backup/<timestamp>/.ssh/config ~/.ssh/config
+```
+
+## Git ignore files
+
+- **`.gitignore`** (this repo only): prevents committing secrets or macOS junk.
+- **`.gitignore_global`** (all repos): suppresses editor artifacts and `.DS_Store` globally.
+
+## Brewfile maintenance
+
+```bash
 brew bundle dump --force --file=~/dotfiles/Brewfile
 ```
 
 ## Troubleshooting
+
 ### `bash ~/dotfiles/scripts/bootstrap.sh` fails
-Run:
 ```bash
-brew update
-brew doctor
+brew update && brew doctor
 bash ~/dotfiles/scripts/bootstrap.sh
 ```
 
-### `yarn --version` is not Berry
-Run:
-```bash
-bash ~/dotfiles/scripts/setup-shell.sh
-exec zsh
-```
-
-### Shell plugins are missing
-Run:
-```bash
-bash ~/dotfiles/scripts/setup-shell.sh
-exec zsh
-```
-
-### `claude` or `codex` command not found
-Run:
+### `yarn --version` is not Berry / shell plugins missing / `claude` not found
 ```bash
 bash ~/dotfiles/scripts/setup-shell.sh
 exec zsh
 ```
 
 ### Wrong git identity in dotfiles repo
-Run:
 ```bash
 git -C ~/dotfiles config user.name "Fabien Fouassier"
-git -C ~/dotfiles config user.email "<your-personal-email>"
+git -C ~/dotfiles config user.email "fab.fouassier@gmail.com"
 ```

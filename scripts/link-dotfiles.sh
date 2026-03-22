@@ -3,7 +3,8 @@ set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 BACKUP_DIR="${BACKUP_DIR:-$HOME/.dotfiles-backup}"
-TIMESTAMP="$(date +%Y%m%d%H%M%S)"
+TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
+SNAPSHOT_DIR="$BACKUP_DIR/$TIMESTAMP"
 CONF="$DOTFILES_DIR/symlinks.conf"
 
 if [[ ! -f "$CONF" ]]; then
@@ -11,11 +12,11 @@ if [[ ! -f "$CONF" ]]; then
   exit 1
 fi
 
-mkdir -p "$BACKUP_DIR" \
-  "$HOME/.ssh" "$HOME/.aws" "$HOME/.claude" "$HOME/.config/gh" \
+mkdir -p "$HOME/.ssh" "$HOME/.aws" "$HOME/.claude" "$HOME/.config/gh" \
   "$HOME/Library/Application Support/Code/User"
 
 linked=0
+backed_up=0
 
 while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
   [[ -z "$rel_src" || "$rel_src" == \#* ]] && continue
@@ -29,8 +30,12 @@ while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
   fi
 
   if [[ -e "$dst" || -L "$dst" ]]; then
-    backup_name="${rel_src//\//_}"
-    mv "$dst" "$BACKUP_DIR/${backup_name}.${TIMESTAMP}"
+    # Preserve relative path structure inside the snapshot
+    rel_path="${dst#$HOME/}"
+    backup_target="$SNAPSHOT_DIR/$rel_path"
+    mkdir -p "$(dirname "$backup_target")"
+    mv "$dst" "$backup_target"
+    backed_up=$((backed_up + 1))
   fi
 
   ln -sfn "$src" "$dst"
@@ -43,3 +48,6 @@ chmod 600 "$HOME/.ssh/config" "$HOME/.aws/config"
 
 echo ""
 echo "$linked symlinks created."
+if [ "$backed_up" -gt 0 ]; then
+  echo "$backed_up files backed up to: $SNAPSHOT_DIR"
+fi
