@@ -38,7 +38,7 @@ BW_SESSION=$(bw unlock --raw)
 export BW_SESSION
 ok "vault unlocked"
 
-# --- Generate ~/.aws/config ---
+# --- AWS config ---
 echo ""
 echo "==> Personal AWS config"
 mkdir -p "$HOME/.aws"
@@ -48,7 +48,7 @@ region = eu-west-1
 output = json
 EOF
 chmod 600 "$HOME/.aws/config"
-ok "~/.aws/config written (ff-digital only)"
+ok "~/.aws/config written"
 
 # --- AWS credentials ---
 echo ""
@@ -76,7 +76,7 @@ fi
 # --- SSH connectivity ---
 echo ""
 echo "==> SSH connectivity"
-if ssh -T github-perso 2>&1 | grep -qi "successfully authenticated"; then
+if ssh -T -o BatchMode=yes github-perso 2>&1 | grep -qi "successfully authenticated"; then
   ok "github-perso"
 else
   fail "github-perso — could not authenticate (is 'SSH - GitHub Personal' in Bitwarden vault?)"
@@ -92,10 +92,3 @@ if [[ "$FAIL" -gt 0 ]]; then
 fi
 echo ""
 echo "Personal secrets restored."
-
-# Work bootstrap discovery (detect only — never execute automatically)
-WORK_BOOTSTRAP="$HOME/.work-bootstrap/bootstrap-work.sh"
-if [[ -x "$WORK_BOOTSTRAP" ]]; then
-  echo ""
-  echo "→ Work bootstrap available: $WORK_BOOTSTRAP"
-fi

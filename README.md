@@ -93,8 +93,6 @@ These files are unversioned and machine-specific. They are sourced/included auto
 
 Work-specific tooling, credentials, and SSH identities are managed by a separate external bootstrap. It lives outside this repository and is employer-independent from the personal dotfiles perspective.
 
-Discovery: if `~/.work-bootstrap/bootstrap-work.sh` exists and is executable, `bootstrap.sh` will print its path at the end of the personal setup.
-
 ## Secrets management
 
 All personal secrets are stored in Bitwarden. Nothing sensitive is committed to this repository.
@@ -142,11 +140,6 @@ xcodes install --latest --experimental-unxip
 ### 2) Finalise the environment
 ```bash
 bash ~/dotfiles/scripts/setup-react-native.sh
-```
-
-### 3) Add iOS Simulators (optional)
-```bash
-xcodes runtimes install 'iOS 18'
 ```
 
 ## Dotfile backups

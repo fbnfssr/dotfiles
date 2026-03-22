@@ -12,9 +12,6 @@ if [[ ! -f "$CONF" ]]; then
   exit 1
 fi
 
-mkdir -p "$HOME/.ssh" "$HOME/.aws" "$HOME/.claude" "$HOME/.config/gh" \
-  "$HOME/Library/Application Support/Code/User"
-
 linked=0
 backed_up=0
 
@@ -28,6 +25,8 @@ while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
     echo "Missing source: $src" >&2
     exit 1
   fi
+
+  mkdir -p "$(dirname "$dst")"
 
   if [[ -e "$dst" || -L "$dst" ]]; then
     # Preserve relative path structure inside the snapshot
@@ -43,8 +42,8 @@ while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
   linked=$((linked + 1))
 done < "$CONF"
 
-chmod 700 "$HOME/.ssh" "$HOME/.aws"
-chmod 600 "$HOME/.ssh/config" "$HOME/.aws/config"
+chmod 700 "$HOME/.ssh"
+chmod 600 "$HOME/.ssh/config"
 
 echo ""
 echo "$linked symlinks created."

@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/fabienfouassier/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [user]
 	name = Fabien Fouassier
 	email = fab.fouassier@gmail.com

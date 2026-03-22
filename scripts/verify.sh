@@ -2,6 +2,8 @@
 # Personal baseline readiness check.
 # Validates tools, authentication, directories, symlinks, and optional overlays.
 # Work environment checks are handled by the work bootstrap verify-work.sh.
+# Intentionally omits -e: the script must check all conditions and report,
+# not abort on first failure. Errors are tracked via ok()/fail() functions.
 set -uo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
@@ -88,7 +90,6 @@ check_exists python3
 check_exists ruby
 check_exists bw
 check_exists claude
-check_exists codex
 check_exists code
 check_exists pod
 check_exists watchman
@@ -129,7 +130,7 @@ fi
 # --- SSH connectivity ---
 echo ""
 echo "==> SSH connectivity"
-if ssh -T github-perso 2>&1 | grep -qi "successfully authenticated"; then
+if ssh -T -o BatchMode=yes github-perso 2>&1 | grep -qi "successfully authenticated"; then
   ok "github-perso"
 else
   fail "github-perso — could not authenticate"

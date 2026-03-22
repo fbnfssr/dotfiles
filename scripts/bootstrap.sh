@@ -44,11 +44,3 @@ brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 echo ""
 echo "Bootstrap completed. Restart your shell with: exec zsh"
-
-# Work bootstrap discovery (detect only — never execute automatically)
-WORK_BOOTSTRAP="$HOME/.work-bootstrap/bootstrap-work.sh"
-if [[ -x "$WORK_BOOTSTRAP" ]]; then
-  echo ""
-  echo "→ Work bootstrap available: $WORK_BOOTSTRAP"
-  echo "  Run it separately when ready."
-fi
