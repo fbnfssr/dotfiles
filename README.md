@@ -26,6 +26,7 @@ Work setup is handled separately by an external work bootstrap (see [Work setup]
 - `scripts/verify.sh`
 - `scripts/list-backups.sh`
 - `scripts/setup-personal-secrets.sh`
+- `scripts/macos.sh`
 
 ## Full setup (new machine)
 
@@ -85,6 +86,16 @@ git -C ~/dotfiles remote set-url origin git@github-perso:fbnfssr/dotfiles.git
 exec zsh
 bash ~/dotfiles/scripts/verify.sh
 ```
+
+## 10) macOS preferences
+
+Apply system preferences (Dock, Finder, keyboard, trackpad, screenshots, Mission Control):
+
+```bash
+bash ~/dotfiles/scripts/macos.sh
+```
+
+Review the script before running — it sets opinionated defaults. Some changes require a logout/restart.
 
 ## Local overlay files
 

@@ -94,6 +94,53 @@ check_exists code
 check_exists pod
 check_exists watchman
 
+# --- Shell integrations ---
+echo ""
+echo "==> Shell integrations"
+
+# .zshrc sources without errors
+if zsh -li -c 'exit' 2>/dev/null; then
+  ok ".zshrc loads without errors"
+else
+  fail ".zshrc has errors on load"
+fi
+
+# direnv hook is active in the shell
+if zsh -li -c 'whence -w _direnv_hook' 2>/dev/null | grep -q function; then
+  ok "direnv hook active"
+else
+  fail "direnv hook not active — check .zshrc direnv setup"
+fi
+
+# NVM lazy-loading shims resolve
+if zsh -li -c 'type nvm' 2>/dev/null | grep -q function; then
+  ok "nvm shim loaded"
+else
+  fail "nvm shim not found"
+fi
+
+if zsh -li -c 'node --version' >/dev/null 2>&1; then
+  ok "node resolves via nvm"
+else
+  fail "node not resolving — check nvm installation"
+fi
+
+# --- CLI completions ---
+echo ""
+echo "==> CLI completions"
+
+if zsh -li -c 'gh completion -s zsh' >/dev/null 2>&1; then
+  ok "gh completions available"
+else
+  fail "gh completions — not working"
+fi
+
+if zsh -li -c 'aws_completer' >/dev/null 2>&1; then
+  ok "aws completions available"
+else
+  fail "aws completions — aws_completer not found"
+fi
+
 # --- Git & authentication ---
 echo ""
 echo "==> Git & authentication"

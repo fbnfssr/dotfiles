@@ -14,28 +14,6 @@ The goal is incremental improvement based on real friction, not speculative auto
 
 ## Medium priority
 
-### macOS defaults automation
-
-Create `macos.sh` to set system preferences programmatically:
-
-- Dock behavior, Finder settings, keyboard repeat rate
-- Only include defaults that have been manually configured and are stable across macOS versions
-
-### Shell integration validation
-
-Verify that shell integrations load correctly:
-
-- `direnv` hook is active in the shell
-- `.zshrc` sources expected init files without errors
-- NVM lazy-loading shims resolve correctly
-
-### CLI completions
-
-Ensure completions are installed and loaded for:
-
-- `gh`, `aws`
-- Validate via `verify.sh` or a dedicated check
-
 ### VS Code CLI setup
 
 Improve `setup-vscode.sh`:
