@@ -1,9 +1,9 @@
-tap "homebrew/bundle"
-
 # CLI tools
 brew "awscli"
 brew "bitwarden-cli"
 brew "cocoapods"
+brew "corepack"
+brew "openjdk"
 brew "direnv"
 brew "gh"
 brew "git"
@@ -22,6 +22,7 @@ cask "visual-studio-code"
 
 # GUI apps: AI assistants
 cask "chatgpt"
+cask "chatgpt-atlas"
 cask "claude"
 cask "codex"
 
@@ -41,3 +42,6 @@ cask "rectangle"
 
 # GUI apps: security
 cask "bitwarden"
+
+# Android SDK (CLI tools only, no Android Studio)
+cask "android-commandlinetools"

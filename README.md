@@ -53,7 +53,9 @@ bash ~/dotfiles/scripts/bootstrap.sh
 ```
 
 ### 5) Configure Bitwarden
-Bitwarden Desktop is installed by the Brewfile (via Homebrew cask, not the Mac App Store — the two use different SSH agent socket paths; this repo is configured for the Homebrew install). Open it, sign in to your personal account, then:
+Bitwarden Desktop is installed by the Brewfile (via Homebrew cask, not the Mac App Store — the two use different SSH agent socket paths; this repo is configured for the Homebrew install). Open it, then:
+- If using the EU vault: `bw config server https://vault.bitwarden.eu`
+- Sign in to your personal account
 - Go to **Settings → SSH Agent → Enable**
 
 Personal SSH keys must be stored in your Bitwarden vault as SSH Key items. The `.ssh/config` is configured to use the Bitwarden SSH agent at `~/.bitwarden-ssh-agent.sock` — no key files on disk needed.
@@ -68,12 +70,17 @@ This script:
 - Fetches AWS credentials from Bitwarden and writes `~/.aws/credentials`
 - Validates the Bitwarden SSH agent and tests `github-perso` SSH connectivity
 
-### 7) Switch remote to SSH
+### 7) Authenticate GitHub CLI
+```bash
+gh auth login
+```
+
+### 8) Switch remote to SSH
 ```bash
 git -C ~/dotfiles remote set-url origin git@github-perso:fbnfssr/dotfiles.git
 ```
 
-### 8) Restart shell and verify
+### 9) Restart shell and verify
 ```bash
 exec zsh
 bash ~/dotfiles/scripts/verify.sh

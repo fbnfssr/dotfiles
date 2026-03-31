@@ -38,8 +38,8 @@ echo "    All checks passed."
 echo ""
 
 # --- Bootstrap ---
-brew bundle --file="$DOTFILES_DIR/Brewfile"
 "$DOTFILES_DIR/scripts/link-dotfiles.sh"
+brew bundle --file="$DOTFILES_DIR/Brewfile"
 "$DOTFILES_DIR/scripts/setup-shell.sh"
 
 echo ""

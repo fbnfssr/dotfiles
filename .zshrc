@@ -24,6 +24,15 @@ typeset -U path PATH
 path=("$HOME/.local/bin" $path)
 
 # ------------------------------------------
+# 3a) Android SDK (CLI tools via Homebrew, no Android Studio)
+export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
+
+# ------------------------------------------
+# 3b) Java (Homebrew OpenJDK)
+export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+
+# ------------------------------------------
 # 4) direnv
 if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
@@ -67,3 +76,7 @@ alias dc='docker compose'
 # ------------------------------------------
 # 8) Local overlay (unversioned — work or machine-specific config)
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+export PATH="/Users/fabienfouassier/fvm/bin:$PATH"
+
+
+export CLAUDE_CODE_NEW_INIT=1

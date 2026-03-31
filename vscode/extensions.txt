@@ -13,7 +13,7 @@ sdras.night-owl
 vscode-icons-team.vscode-icons
 
 # Productivity
-usernamehm.error-lens
+usernamehw.errorlens
 mikestead.dotenv
 formulahendry.auto-rename-tag
 
