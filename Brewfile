@@ -34,7 +34,7 @@ cask "google-chrome"
 cask "postman"
 
 # GUI apps: productivity and system
-cask "istat-menus"
+cask "stats"
 cask "qlmarkdown"
 cask "raycast"
 cask "react-native-debugger"

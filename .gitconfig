@@ -11,5 +11,5 @@
 	prune = true
 [push]
 	autoSetupRemote = true
-[include]
+[includeIf "gitdir:~/Documents/Code/Work/"]
 	path = ~/.gitconfig.local
