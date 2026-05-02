@@ -79,4 +79,3 @@ alias dc='docker compose'
 export PATH="/Users/fabienfouassier/fvm/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
-export CLAUDE_CODE_NEW_INIT=1

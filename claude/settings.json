@@ -5,8 +5,20 @@
   },
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
-    "firebase@claude-plugins-official": true
+    "firebase@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "warp@claude-code-warp": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "php-lsp@claude-plugins-official": true
   },
-  "effortLevel": "medium",
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true
 }

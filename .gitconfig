@@ -13,3 +13,5 @@
 	autoSetupRemote = true
 [includeIf "gitdir:~/Documents/Code/Work/"]
 	path = ~/.gitconfig.local
+[init]
+	defaultBranch = main

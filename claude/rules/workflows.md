@@ -16,6 +16,10 @@
 - After completing a non-trivial implementation, summarize what changed and why — file by file, not as a generic description. This supports my review process.
 - If a change has implications for other parts of the system (e.g., a shared type changed, a contract shifted), flag those implications explicitly even if I didn't ask.
 
+## Analysis
+
+When asked to produce an analysis, a report or anything similar, write it as a markdown document in `/docs/analyses` of the current repository. If that directory doesn't exist, create it and add `docs/analyses/*` to `.gitignore`.
+
 ## Reference document updates
 
 When a task changes state described in a markdown document that was referenced during the conversation, update that document to reflect the outcome.

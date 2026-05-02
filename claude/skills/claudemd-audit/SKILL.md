@@ -41,7 +41,7 @@ Evaluate all discovered memory files against every principle below. Apply princi
 
 ### Phase 3: Report
 
-Output the report in the exact format specified at the end, as a Markdown document saved to `~/Desktop`.
+Output the report in the exact format specified at the end, as a Markdown document saved to `/docs/analyses/reports`. If directories don't exist create them and add `docs/analyses/*` to `.gitignore`.
 
 ## Evaluation Principles
 
