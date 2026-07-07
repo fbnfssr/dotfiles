@@ -32,6 +32,7 @@ cask "notion"
 # GUI apps: browser and API/network tooling
 cask "google-chrome"
 cask "postman"
+cask "bruno"
 
 # GUI apps: productivity and system
 cask "stats"

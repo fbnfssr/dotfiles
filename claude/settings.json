@@ -1,15 +1,19 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "bypassPermissions"
   },
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "firebase@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "warp@claude-code-warp": true,
     "typescript-lsp@claude-plugins-official": true,
-    "php-lsp@claude-plugins-official": true
+    "php-lsp@claude-plugins-official": true,
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -19,6 +23,9 @@
       }
     }
   },
-  "effortLevel": "xhigh",
-  "skipDangerousModePermissionPrompt": true
+  "language": "english",
+  "effortLevel": "high",
+  "tui": "default",
+  "skipDangerousModePermissionPrompt": true,
+  "model": "sonnet"
 }

@@ -77,5 +77,10 @@ alias dc='docker compose'
 # 8) Local overlay (unversioned — work or machine-specific config)
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 export PATH="/Users/fabienfouassier/fvm/bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# ------------------------------------------
+# 9) Ruby (rbenv — selects version per project .ruby-version; falls back to `rbenv global`)
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - zsh)"
+fi
 

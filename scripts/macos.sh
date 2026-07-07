@@ -33,6 +33,9 @@ defaults write com.apple.dock minimize-to-application -bool true
 # Finder                                                                      #
 ###############################################################################
 
+# Show hidden files
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
 # Show all file extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
@@ -51,15 +54,21 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+# Set default Finder view to "Icon"
+defaults write com.apple.finder FXPreferredViewStyle icnv
+
+# Set default grouping by "Kind"
+defaults write com.apple.finder FXPreferredGroupBy Kind
+
 ###############################################################################
 # Keyboard                                                                    #
 ###############################################################################
 
 # Fast key repeat rate (lower = faster)
-defaults write NSGlobalDomain KeyRepeat -int 12
+defaults write NSGlobalDomain KeyRepeat -int 2
 
 # Short delay before key repeat starts (lower = shorter)
-defaults write NSGlobalDomain InitialKeyRepeat -int 30
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
 
 # Disable press-and-hold for accent characters — enable key repeat instead
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false

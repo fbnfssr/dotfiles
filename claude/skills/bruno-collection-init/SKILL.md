@@ -3,7 +3,7 @@ name: bruno-collection-init
 description: Generate a complete Bruno API collection at /bruno/ using the OpenCollection YAML format — environment files, request files with declarative assertions and Chai tests, a pre-commit YAML validator, and a CI workflow. Generates a path-scoped Bruno authoring rule at .claude/rules/bruno.md plus a short pointer in CLAUDE.md so subsequent edits stay consistent. Use when bootstrapping API testing for a project that does not yet have a Bruno collection.
 context: fork
 model: opus
-effort: xhigh
+effort: max
 allowed-tools: Read, Grep, Glob, Bash, Write, Edit
 disable-model-invocation: true
 ---
