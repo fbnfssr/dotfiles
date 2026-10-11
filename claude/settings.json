@@ -7,7 +7,7 @@
     "allow": [],
     "defaultMode": "bypassPermissions"
   },
-  "model": "opus",
+  "model": "sonnet",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "firebase@claude-plugins-official": true,
@@ -32,7 +32,7 @@
       "effortLevel": "xhigh"
     },
     "claude-sonnet-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "medium"
     }
   },
   "tui": "default",
