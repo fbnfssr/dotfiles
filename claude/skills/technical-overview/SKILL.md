@@ -5,7 +5,6 @@ disable-model-invocation: true
 context: fork
 agent: explore
 model: sonnet
-effort: high
 ---
 
 You are analyzing an existing codebase.
@@ -22,7 +21,7 @@ Instructions:
 - Identify conventions and constraints enforced in the code
 
 Output:
-Write a structured Markdown document saved to `/docs/analyses/overviews/technical-overview.md`. If the `/docs/analyses/overviews/` folders don't exist, create them and add `docs/analyses/*` to `.gitignore`.
+Write a structured Markdown document saved to `/docs/analyses/overviews/technical-overview.md`. Create the folders if they don't exist.
 
 The document must include the following sections in this order:
 

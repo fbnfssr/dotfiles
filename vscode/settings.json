@@ -79,4 +79,5 @@
   "claudeCode.initialPermissionMode": "bypassPermissions",
   "git.autofetchPeriod": 3600,
   "security.promptForLocalFileProtocolHandling": false,
+  "git.detectWorktrees": true
 }

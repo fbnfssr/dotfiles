@@ -18,7 +18,16 @@
 
 ## Analysis
 
-When asked to produce an analysis, a report or anything similar, write it as a markdown document in `/docs/analyses` of the current repository. If that directory doesn't exist, create it and add `docs/analyses/*` to `.gitignore`.
+When asked to produce an analysis, a report or anything similar, write it as a markdown document in `/docs/analyses` of the current repository. The global gitignore excludes it; never add it to a repository's `.gitignore`.
+
+## Rule and instruction files
+
+- `CLAUDE.md` and `.claude/rules/*.md` state the behavior to follow going forward, not a record of what was decided or why. DO NOT write them as changelogs or decision logs, and DO NOT narrate a past discussion ("we chose X because...", "as of ticket Y..."). A rationale worth keeping belongs in an ADR, a commit message, or a PR description.
+- Keep entries short — these files load into every session's context.
+
+## Git worktrees
+
+- When a task uses a git worktree, immediately rename the auto-generated branch (`git branch -m <name>`) to match the project's own branch naming convention (check recent branches with `git log`/`git branch -a`) before committing.
 
 ## Reference document updates
 

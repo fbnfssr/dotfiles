@@ -9,3 +9,7 @@
 .env
 .env.*
 .secrets/
+
+# Claude Code writes these into ~/.claude/skills, which links here
+/claude/skills/synced/
+/claude/skills/.trash/

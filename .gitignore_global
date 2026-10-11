@@ -12,3 +12,8 @@
 # Vim
 *.swp
 *.swo
+
+# Claude local
+.claude/settings.local.json
+CLAUDE.local.md
+**/docs/analyses/
