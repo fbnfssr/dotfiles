@@ -177,7 +177,7 @@ cp ~/.dotfiles-backup/<timestamp>/.ssh/config ~/.ssh/config
 ## Git ignore files
 
 - **`.gitignore`** (this repo only): prevents committing secrets or macOS junk.
-- **`.gitignore_global`** (all repos): suppresses editor artifacts and `.DS_Store` globally.
+- **`.gitignore_global`** (all repos): suppresses editor artifacts, `.DS_Store`, local Claude files (`.claude/settings.local.json`, `CLAUDE.local.md`) and `docs/analyses/` globally.
 
 ## Brewfile maintenance
 
