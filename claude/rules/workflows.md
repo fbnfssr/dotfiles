@@ -8,7 +8,7 @@
 
 ## Scope control
 
-- Implement exactly what was asked. If you notice something adjacent that should change, flag it separately — do not bundle it into the current change.
+- Implement exactly what was asked. DO NOT refactor adjacent code, rename unrelated variables, make unrequested improvements, or create files or directories outside the task. Flag anything adjacent that should change separately — do not bundle it into the current change.
 - When a task grows beyond the original scope during execution, stop and confirm the expanded scope before continuing.
 
 ## Review awareness
