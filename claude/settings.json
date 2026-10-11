@@ -7,13 +7,15 @@
     "allow": [],
     "defaultMode": "bypassPermissions"
   },
+  "model": "sonnet",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "firebase@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "php-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true
+    "warp@claude-code-warp": true,
+    "expo@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -25,7 +27,14 @@
   },
   "language": "english",
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "tui": "default",
-  "skipDangerousModePermissionPrompt": true,
-  "model": "sonnet"
+  "skipDangerousModePermissionPrompt": true
 }
