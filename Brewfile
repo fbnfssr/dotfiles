@@ -1,3 +1,5 @@
+tap "mobile-dev-inc/tap"
+
 # CLI tools
 brew "awscli"
 brew "bitwarden-cli"
@@ -12,6 +14,7 @@ brew "python"
 brew "ruby"
 brew "watchman"
 brew "xcodes"
+brew "mobile-dev-inc/tap/maestro"
 
 # Fonts
 cask "font-hack-nerd-font"
@@ -22,17 +25,13 @@ cask "visual-studio-code"
 
 # GUI apps: AI assistants
 cask "chatgpt"
-cask "chatgpt-atlas"
 cask "claude"
-cask "codex"
 
 # GUI apps: communication and collaboration
 cask "notion"
 
-# GUI apps: browser and API/network tooling
+# GUI apps: browser
 cask "google-chrome"
-cask "postman"
-cask "bruno"
 
 # GUI apps: productivity and system
 cask "stats"

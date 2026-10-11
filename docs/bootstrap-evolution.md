@@ -12,18 +12,6 @@ The goal is incremental improvement based on real friction, not speculative auto
 
 ---
 
-## Medium priority
-
-### VS Code CLI setup
-
-Improve `setup-vscode.sh`:
-
-- Detect whether `code` CLI is available on `$PATH`
-- Handle the symlink setup for the CLI tool if missing
-- Separate extension installation from CLI setup
-
----
-
 ## Low priority / optional
 
 ### Brewfile segmentation
@@ -34,14 +22,6 @@ Split `Brewfile` into logical groups:
 - `Brewfile.dev` — development tooling (node, python, docker)
 - `Brewfile.personal` — personal apps (browsers, media)
 - `Brewfile.optional` — situational installs
-
-### Lightweight Android SDK setup
-
-Install Android SDK components without Android Studio:
-
-- `sdkmanager`, `platform-tools`, `build-tools`
-- Set `ANDROID_HOME` in shell config
-- Only if React Native / mobile development is active
 
 ### Workstation bootstrap layer
 

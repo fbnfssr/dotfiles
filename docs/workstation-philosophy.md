@@ -37,9 +37,9 @@ The target audience is one person: the author. The standard for inclusion is dai
 
 ## What this system avoids
 
-- **Over-automation.** Not everything needs a script. macOS system preferences, application-specific settings, and one-time configurations are left manual until the cost of doing them by hand exceeds the cost of maintaining automation.
+- **Over-automation.** Not everything needs a script. Application-specific settings and one-time configurations are left manual until the cost of doing them by hand exceeds the cost of maintaining automation. macOS system preferences crossed that line: they are scripted in `scripts/macos.sh`, which is run explicitly and is not part of `bootstrap.sh`.
 - **Unnecessary tools.** A smaller toolset is easier to maintain, upgrade, and debug. If two tools serve the same purpose, one is removed. If a tool was installed for a single project that ended, it gets cleaned out.
-- **Fragile hacks.** No undocumented `defaults write` commands copied from the internet. No scripts that depend on parsing volatile output formats. No workarounds that break on the next macOS update.
+- **Fragile hacks.** No undocumented `defaults write` commands copied from the internet — every setting in `scripts/macos.sh` is commented with what it changes. No scripts that depend on parsing volatile output formats. No workarounds that break on the next macOS update.
 - **Premature abstraction.** There is no plugin system, no templating engine, no multi-OS support layer. The repo targets one platform (macOS on Apple Silicon), one shell (zsh), one package manager (Homebrew). Abstraction would add complexity without solving a real problem.
 - **Configuration drift.** Dotfiles live in the repo and are symlinked into place. Editing `~/.gitconfig` directly means editing the repo file. There is no sync mechanism because there is no copy — the symlink is the configuration.
 

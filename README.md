@@ -15,6 +15,7 @@ Work setup is handled separately by an external work bootstrap (see [Work setup]
 - `claude/settings.json`
 - `claude/skills/`
 - `claude/rules/`
+- `claude/agents/`
 - `vscode/settings.json`
 - `vscode/keybindings.json`
 - `vscode/extensions.txt`
@@ -104,13 +105,13 @@ These files are unversioned and machine-specific. They are sourced/included auto
 
 | File | Purpose | Who manages it |
 |------|---------|----------------|
-| `~/.zshrc.local` | Shell aliases, env vars, functions | Work bootstrap or manual |
-| `~/.gitconfig.local` | Git identity override (e.g. work email) | Work bootstrap |
+| `~/.zshrc.local` | Shell aliases, env vars, functions | Work bootstrap |
+| `~/.gitconfig.local` | Git identity override (e.g. work email) — only included for repos under `~/Documents/Code/Work/` | Work bootstrap |
 | `~/.ssh/config.local` | Work SSH host entries | Work bootstrap |
 
 ## Work setup
 
-Work-specific tooling, credentials, and SSH identities are managed by a separate external bootstrap. It lives outside this repository and is employer-independent from the personal dotfiles perspective.
+Work-specific tooling, credentials, and SSH identities are managed by a separate external bootstrap. It lives outside this repository, in cloud storage (`~/Library/CloudStorage/OneDrive-<employer>/work-bootstrap/`), and is employer-independent from the personal dotfiles perspective.
 
 ## Secrets management
 
@@ -135,12 +136,8 @@ All personal secrets are stored in Bitwarden. Nothing sensitive is committed to 
 
 ## VS Code setup
 
-Settings and keybindings are symlinked by `link-dotfiles.sh`. Extensions must be installed separately.
+Settings and keybindings are symlinked by `link-dotfiles.sh`. Extensions must be installed separately. The `code` CLI is already on `PATH` — the Homebrew cask links it.
 
-### 1) Add `code` to PATH
-Open VS Code → `Cmd+Shift+P` → **Shell Command: Install 'code' command in PATH**
-
-### 2) Install extensions
 ```bash
 bash ~/dotfiles/scripts/setup-vscode.sh
 ```

@@ -3,8 +3,8 @@
 #
 # Prerequisites:
 #   1. VS Code is installed (via brew bundle)
-#   2. The 'code' CLI is in PATH:
-#      Open VS Code → Cmd+Shift+P → "Shell Command: Install 'code' command in PATH"
+#   2. The 'code' CLI is in PATH — the Homebrew cask links it. If it is missing
+#      (e.g. VS Code installed outside Homebrew), the script explains how to add it.
 #
 # Usage:
 #   bash ~/dotfiles/scripts/setup-vscode.sh

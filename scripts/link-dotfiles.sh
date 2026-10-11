@@ -28,6 +28,12 @@ while IFS=: read -r rel_src raw_dst || [[ -n "$rel_src" ]]; do
 
   mkdir -p "$(dirname "$dst")"
 
+  # Already linked to the repo — nothing to back up or relink
+  if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
+    echo "  ok     $dst"
+    continue
+  fi
+
   if [[ -e "$dst" || -L "$dst" ]]; then
     # Preserve relative path structure inside the snapshot
     rel_path="${dst#$HOME/}"

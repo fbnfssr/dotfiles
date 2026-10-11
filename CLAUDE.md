@@ -6,19 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal macOS dotfiles for Apple Silicon. Scripts are Bash, targeting macOS with Homebrew. There is no build system, test suite, or linter.
 
-This is the **personal baseline only**. Work-specific tooling, credentials, and SSH identities live in an external work bootstrap (`~/.work-bootstrap/`) and are not part of this repository.
+This is the **personal baseline only**. Work-specific tooling, credentials, and SSH identities live in an external work bootstrap (cloud-synced: `~/Library/CloudStorage/OneDrive-<employer>/work-bootstrap/`) and are not part of this repository.
 
 ## Architecture
 
 All dotfile symlinks are driven by `symlinks.conf` (format: `relative/source:$HOME/destination`). Scripts read this file — it is the single source of truth for what gets linked and where.
 
-Bootstrap flow: `bootstrap.sh` → `brew bundle` → `link-dotfiles.sh` → `setup-shell.sh`. Each script in `scripts/` can also run independently.
+Bootstrap flow: `bootstrap.sh` → `link-dotfiles.sh` → `brew bundle` → `setup-shell.sh`. Each script in `scripts/` can also run independently.
 
 Secrets are stored in Bitwarden (personal). SSH keys are served by the Bitwarden SSH agent (configured in `.ssh/config` via host-specific `IdentityAgent`). AWS credentials for the personal `ff-digital` profile are fetched from Bitwarden by `setup-personal-secrets.sh` using the `bw` CLI.
 
 Backups are timestamped snapshots in `~/.dotfiles-backup/<timestamp>/` preserving the original directory structure relative to `$HOME`.
 
-Local overlay files (`~/.zshrc.local`, `~/.gitconfig.local`, `~/.ssh/config.local`) are unversioned and sourced/included automatically when present. They are managed by the work bootstrap, not this repo.
+Local overlay files (`~/.zshrc.local`, `~/.gitconfig.local`, `~/.ssh/config.local`) are unversioned and sourced/included automatically when present — except `~/.gitconfig.local`, which is only included for repos under `~/Documents/Code/Work/`. They are managed by the work bootstrap, not this repo.
 
 ## Key commands
 
