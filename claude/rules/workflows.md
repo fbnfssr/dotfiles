@@ -22,7 +22,7 @@ When asked to produce an analysis, a report or anything similar, write it as a m
 
 ## Rule and instruction files
 
-- `CLAUDE.md` and `.claude/rules/*.md` state the behavior to follow going forward, not a record of what was decided or why. DO NOT write them as changelogs or decision logs, and DO NOT narrate a past discussion ("we chose X because...", "as of ticket Y..."). A rationale worth keeping belongs in an ADR, a commit message, or a PR description.
+- `CLAUDE.md` and `.claude/rules/*.md` state the behavior to follow going forward, not a record of what was decided or why. DO NOT write them as changelogs or decision logs, and DO NOT narrate a past discussion ("we chose X because...", "as of ticket Y..."). A rationale worth keeping belongs in an ADR or a PR description.
 - Keep entries short — these files load into every session's context.
 
 ## Git worktrees
