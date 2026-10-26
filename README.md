@@ -14,7 +14,7 @@ Work setup is handled separately by an external work bootstrap (see [Work setup]
 - `.ssh/config`
 - `claude/settings.json`
 - `claude/skills/`
-- `claude/rules/`
+- `claude/CLAUDE.md` (also linked as `~/.codex/AGENTS.md`)
 - `vscode/settings.json`
 - `vscode/keybindings.json`
 - `vscode/extensions.txt`

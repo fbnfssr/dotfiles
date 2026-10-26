@@ -1,4 +1,5 @@
 {
+  "syncClaudeAiPlugins": false,
   "attribution": {
     "commit": "",
     "pr": ""
@@ -8,14 +9,47 @@
     "defaultMode": "bypassPermissions"
   },
   "model": "sonnet",
+  "skillOverrides": {
+    "claude-api": "off",
+    "keybindings-help": "off",
+    "morning": "off",
+    "import-memory": "off",
+    "google-workspace": "off"
+  },
+  "deniedMcpServers": [
+    {
+      "serverName": "claude.ai Asana"
+    },
+    {
+      "serverName": "claude.ai Box"
+    },
+    {
+      "serverName": "claude.ai Canva"
+    },
+    {
+      "serverName": "claude.ai HubSpot"
+    },
+    {
+      "serverName": "claude.ai Intercom"
+    },
+    {
+      "serverName": "claude.ai Linear"
+    },
+    {
+      "serverName": "claude.ai Webflow"
+    },
+    {
+      "serverName": "claude.ai monday.com"
+    }
+  ],
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "firebase@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
     "php-lsp@claude-plugins-official": true,
-    "warp@claude-code-warp": true,
-    "expo@claude-plugins-official": false
+    "expo@claude-plugins-official": false,
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -29,12 +63,13 @@
   "effortLevel": "high",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "xhigh"
+      "effortLevel": "high"
     },
     "claude-sonnet-5-5": {
       "effortLevel": "medium"
     }
   },
   "tui": "default",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
 }
