@@ -17,3 +17,4 @@
 .claude/settings.local.json
 CLAUDE.local.md
 **/docs/analyses/
+.claude/worktrees/

@@ -22,6 +22,8 @@ fi
 # 3) PATH
 typeset -U path PATH
 path=("$HOME/.local/bin" $path)
+# python@3.14 only links versioned binaries into /opt/homebrew/bin; this puts python3/pip3 back ahead of Xcode's 3.9
+path=("/opt/homebrew/opt/python@3.14/libexec/bin" $path)
 
 # ------------------------------------------
 # 3a) Android SDK (CLI tools via Homebrew, no Android Studio)
