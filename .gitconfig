@@ -15,5 +15,3 @@
 	path = ~/.gitconfig.local
 [init]
 	defaultBranch = main
-[url "git@gitlab-orkester:orkester-group/"]
-	insteadOf = git@gitlab.com:orkester-group/

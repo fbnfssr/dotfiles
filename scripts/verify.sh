@@ -177,7 +177,8 @@ fi
 # --- SSH connectivity ---
 echo ""
 echo "==> SSH connectivity"
-if ssh -T -o StrictHostKeyChecking=accept-new github-perso 2>&1 | grep -qi "successfully authenticated"; then
+# GitHub's ssh -T always exits 1; `|| true` keeps pipefail from failing a successful login
+if { ssh -T -o StrictHostKeyChecking=accept-new github-perso 2>&1 || true; } | grep -qi "successfully authenticated"; then
   ok "github-perso"
 else
   fail "github-perso — could not authenticate"

@@ -4,14 +4,26 @@ set -euo pipefail
 # macOS system preferences
 #
 # Run once after a fresh install, then re-run if preferences change.
+# Only settings that differ from the macOS defaults are listed: a setting left
+# at its default is deliberately absent, not forgotten.
 # Requires closing System Settings before running — some panes hold locks.
 # A logout/restart may be needed for certain settings to take full effect.
+#
+# Not scriptable reliably, set by hand: Dock app list, menu bar items
+# (Bluetooth shown), keyboard layout (French, chosen in Setup Assistant).
 
 echo "Applying macOS preferences..."
 
 # Close System Settings to prevent it from overriding changes
 osascript -e 'tell application "System Settings" to quit' 2>/dev/null || true
 sleep 1
+
+###############################################################################
+# Appearance                                                                  #
+###############################################################################
+
+# Dark mode
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
 ###############################################################################
 # Dock                                                                        #
@@ -26,8 +38,9 @@ defaults write com.apple.dock magnification -bool false
 # Hide recent applications
 defaults write com.apple.dock show-recents -bool false
 
-# Minimize windows into their application icon
-defaults write com.apple.dock minimize-to-application -bool true
+# Bottom-right hot corner: no action (the default opens Quick Note)
+defaults write com.apple.dock wvous-br-corner -int 1
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 ###############################################################################
 # Finder                                                                      #
@@ -36,29 +49,34 @@ defaults write com.apple.dock minimize-to-application -bool true
 # Show hidden files
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
-# Show all file extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
 # Show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
 
-# Show path bar
-defaults write com.apple.finder ShowPathbar -bool true
-
-# Keep folders on top when sorting by name
-defaults write com.apple.finder _FXSortFoldersFirst -bool true
-
-# Search the current folder by default
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
-
-# Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# New Finder windows open on the Desktop
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
 
 # Set default Finder view to "Icon"
 defaults write com.apple.finder FXPreferredViewStyle icnv
 
 # Set default grouping by "Kind"
 defaults write com.apple.finder FXPreferredGroupBy Kind
+
+###############################################################################
+# Desktop & window management                                                 #
+###############################################################################
+
+# Enable Stage Manager
+defaults write com.apple.WindowManager GloballyEnabled -bool true
+
+# Hide desktop items, both with and without Stage Manager
+defaults write com.apple.WindowManager HideDesktop -bool true
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
+
+# Disable built-in window tiling (Rectangle handles it)
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
+defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool false
+defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool false
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
 
 ###############################################################################
 # Keyboard                                                                    #
@@ -70,54 +88,23 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 # Short delay before key repeat starts (lower = shorter)
 defaults write NSGlobalDomain InitialKeyRepeat -int 25
 
-# Disable press-and-hold for accent characters — enable key repeat instead
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-# Disable automatic capitalization
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
-# Disable smart dashes
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-# Disable period with double-space
-defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-
-# Disable smart quotes
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-# Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
 ###############################################################################
-# Trackpad                                                                    #
+# Trackpad & mouse                                                            #
 ###############################################################################
 
-# Enable tap to click
+# Enable tap to click (the -currentHost key also covers the login screen)
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Tracking speed (0.0 to 3.0, default ~1.0)
 defaults write NSGlobalDomain com.apple.trackpad.scaling -float 2.0
 
-###############################################################################
-# Screenshots                                                                 #
-###############################################################################
+# Trackpad scrolling speed
+defaults write NSGlobalDomain com.apple.trackpad.scrolling -float 0.5882
 
-# Disable floating thumbnail after taking a screenshot
-defaults write com.apple.screencapture show-thumbnail -bool false
-
-# Disable window shadow in screenshots
-defaults write com.apple.screencapture disable-shadow -bool true
-
-###############################################################################
-# Mission Control                                                             #
-###############################################################################
-
-# Don't automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
-
-# Group windows by application in Mission Control
-defaults write com.apple.dock expose-group-apps -bool true
+# Mouse scrolling speed
+defaults write NSGlobalDomain com.apple.scrollwheel.scaling -float 0.4412
 
 ###############################################################################
 # Apply changes                                                               #

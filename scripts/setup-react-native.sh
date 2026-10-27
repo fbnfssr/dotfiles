@@ -31,7 +31,11 @@ echo ""
 echo "Xcode configured."
 
 # --- Android SDK (headless — no Android Studio) ---
-ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
+# Exported: avdmanager locates the SDK through the environment, not a flag
+export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
+# Latest stable API level; minor platform releases (e.g. 37.1, 37.2) ship no system images
+SYSTEM_IMAGE="system-images;android-37.0;google_apis_playstore;arm64-v8a"
+AVD_NAME="Pixel_10_API_37"
 
 if ! command -v sdkmanager >/dev/null 2>&1; then
   echo "sdkmanager not found. Run: brew install --cask android-commandlinetools" >&2
@@ -39,13 +43,23 @@ if ! command -v sdkmanager >/dev/null 2>&1; then
 fi
 
 echo "==> Installing Android SDK components"
+# Platforms, build-tools and NDK are left to Gradle: it downloads the versions each
+# project declares on first build, as long as the licenses below are accepted.
+# Gradle never fetches emulator system images, so one is installed here.
 yes | sdkmanager --sdk_root="$ANDROID_HOME" \
   "platform-tools" \
-  "build-tools;35.0.0" \
-  "platforms;android-35" \
-  "emulator"
+  "emulator" \
+  "$SYSTEM_IMAGE"
 
 yes | sdkmanager --sdk_root="$ANDROID_HOME" --licenses >/dev/null 2>&1 || true
+
+echo "==> Creating emulator"
+if avdmanager list avd -c | grep -qx "$AVD_NAME"; then
+  echo "    $AVD_NAME already exists"
+else
+  # "no" declines the custom hardware profile prompt
+  echo no | avdmanager create avd --name "$AVD_NAME" --package "$SYSTEM_IMAGE" --device pixel_10
+fi
 
 echo ""
 echo "React Native environment is ready (iOS + Android)."

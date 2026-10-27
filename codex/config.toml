@@ -1,0 +1,150 @@
+model = "gpt-6.1-sol"
+approval_policy = "never"
+personality = "pragmatic"
+sandbox_mode = "danger-full-access"
+notify = ["/Users/fabienfouassier/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+model_reasoning_effort = "high"
+service_tier = "default"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."notion@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[projects."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe"]
+trust_level = "trusted"
+
+[projects."/Users/fabienfouassier/Documents/Codex/2026-08-01/chatgpt-for-chrome-plugin-browser-openai"]
+trust_level = "trusted"
+
+[projects."/Users/fabienfouassier/Documents/Codex/2026-08-01/notion-plugin-notion-openai-curated-remote"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/fabienfouassier/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/fabienfouassier/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.1021.31345"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/fabienfouassier/.codex/plugins/cache/openai-bundled/browser/26.1021.31345/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/fabienfouassier/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[tui]
+notification_condition = "always"
+screen_reader_detection_done = true
+
+[tui.model_availability_nux]
+"gpt-6.1-sol" = 3
+
+[desktop]
+localeOverride = "en-US"
+git-pull-request-merge-method = "merge"
+followUpQueueMode = "queue"
+dock-icon-preference = "codex-system"
+conversationDetailMode = "STEPS_PROSE"
+
+[desktop.open-in-target-preferences]
+global = "vscode"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe" = "warp"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/fabienfouassier/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/fabienfouassier/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[features]
+js_repl = false
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "028a14b6eaa6d98dac2aae00764345ab9f244801ed8493d42b9af3be5575006e,f204d340535055781952b10ed396de20b842f00a19e430852f7e121ad1ce91f6"
+
+[hooks.state]
+
+[hooks.state."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:946a1cb0bc701c39371a9d9c62622048f8f15162589b1a8fd39211c3af0888ca"
+
+[hooks.state."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe/.codex/hooks.json:pre_tool_use:0:1"]
+trusted_hash = "sha256:aa38184a98986dcfb07a077b604126bc568f02613bc96f6c456ebe400ba3fc37"
+
+[hooks.state."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe/.codex/hooks.json:pre_tool_use:1:0"]
+trusted_hash = "sha256:223c2ed86d88beb7fc92a1015885b9df69406189a2e71f43ba705b572f0f4cd4"
+
+[hooks.state."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:d8f77a74964ccf8eb4f9b6ad3e3ae33ab1758f1be20d48d3cc9439a5c0e06790"
+
+[hooks.state."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe/.codex/hooks.json:pre_tool_use:1:1"]
+trusted_hash = "sha256:508f2a0a018a94c558ce2d38b22799194e6ce6ab582a51373677e3e28daf9dea"
+
+[hooks.state."/Users/fabienfouassier/Documents/Code/Personal/voyage-vibe/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:25ad37b1bd066a7ab67b77ea5a2c31696c4b3980d04c5350d0423d7966c5d62b"
+
+[apps.connector_openai_chatgpt_pets]
+enabled = false
+
+[apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google_drive.batch_update_spreadsheet"]
+approval_mode = "approve"

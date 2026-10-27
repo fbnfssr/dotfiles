@@ -9,6 +9,7 @@ brew "openjdk"
 brew "direnv"
 brew "gh"
 brew "git"
+brew "gitleaks"
 brew "nvm"
 brew "python"
 brew "ruby"
@@ -26,9 +27,15 @@ cask "visual-studio-code"
 # GUI apps: AI assistants
 cask "chatgpt"
 cask "claude"
+cask "codex"
 
 # GUI apps: communication and collaboration
 cask "notion"
+cask "whatsapp"
+
+# GUI apps: network and API tooling
+cask "bruno"
+cask "proxyman"
 
 # GUI apps: browser
 cask "google-chrome"

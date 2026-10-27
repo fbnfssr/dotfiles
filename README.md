@@ -15,6 +15,8 @@ Work setup is handled separately by an external work bootstrap (see [Work setup]
 - `claude/settings.json`
 - `claude/skills/`
 - `claude/CLAUDE.md` (also linked as `~/.codex/AGENTS.md`)
+- `codex/config.toml`
+- `warp/settings.toml`
 - `vscode/settings.json`
 - `vscode/keybindings.json`
 - `vscode/extensions.txt`

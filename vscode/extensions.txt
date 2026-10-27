@@ -12,10 +12,15 @@ yzhang.markdown-all-in-one
 sdras.night-owl
 vscode-icons-team.vscode-icons
 
+# Frontend
+bradlc.vscode-tailwindcss
+dsznajder.es7-react-js-snippets
+
 # Productivity
 usernamehw.errorlens
 mikestead.dotenv
 formulahendry.auto-rename-tag
+johnpapa.vscode-peacock
 
 # AI
 anthropic.claude-code
