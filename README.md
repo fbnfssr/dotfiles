@@ -59,7 +59,8 @@ bash ~/dotfiles/scripts/bootstrap.sh
 ### 5) Configure Bitwarden
 Bitwarden Desktop is installed by the Brewfile (via Homebrew cask, not the Mac App Store — the two use different SSH agent socket paths; this repo is configured for the Homebrew install). Open it, then:
 - If using the EU vault: `bw config server https://vault.bitwarden.eu`
-- Sign in to your personal account
+- Sign in to your personal account in the Desktop app
+- Sign in to the CLI as well (the Desktop session is not shared): `bw login`
 - Go to **Settings → SSH Agent → Enable**
 
 Personal SSH keys must be stored in your Bitwarden vault as SSH Key items. The `.ssh/config` is configured to use the Bitwarden SSH agent at `~/.bitwarden-ssh-agent.sock` — no key files on disk needed.
@@ -84,13 +85,23 @@ gh auth login
 git -C ~/dotfiles remote set-url origin git@github-perso:fbnfssr/dotfiles.git
 ```
 
-### 9) Restart shell and verify
+### 9) Install Xcode and set up React Native (iOS + Android)
+Xcode must be installed before `verify.sh`, which checks `xcodebuild` and the simulators.
+```bash
+xcodes install --latest --experimental-unxip
+bash ~/dotfiles/scripts/setup-react-native.sh
+```
+
+### 10) Restart shell and verify
+`exec zsh` replaces the current shell, so run the two commands separately.
 ```bash
 exec zsh
+```
+```bash
 bash ~/dotfiles/scripts/verify.sh
 ```
 
-## 10) macOS preferences
+### 11) macOS preferences
 
 Apply system preferences (Dock, Finder, keyboard, trackpad, screenshots, Mission Control):
 
@@ -144,20 +155,6 @@ bash ~/dotfiles/scripts/setup-vscode.sh
 ```
 
 Extensions are listed in `vscode/extensions.txt`.
-
-## React Native (iOS) setup
-
-Run after the main bootstrap. Xcode must be installed first.
-
-### 1) Install Xcode
-```bash
-xcodes install --latest --experimental-unxip
-```
-
-### 2) Finalise the environment
-```bash
-bash ~/dotfiles/scripts/setup-react-native.sh
-```
 
 ## Dotfile backups
 

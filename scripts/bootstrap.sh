@@ -39,6 +39,9 @@ echo ""
 
 # --- Bootstrap ---
 "$DOTFILES_DIR/scripts/link-dotfiles.sh"
+# Homebrew refuses to load formulae from a non-official tap until it is trusted
+brew tap mobile-dev-inc/tap
+brew trust mobile-dev-inc/tap
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 "$DOTFILES_DIR/scripts/setup-shell.sh"
 

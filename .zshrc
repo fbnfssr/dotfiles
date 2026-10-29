@@ -77,4 +77,7 @@ alias dc='docker compose'
 
 # ------------------------------------------
 # 8) Local overlay (unversioned — work or machine-specific config)
-[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+# `if` rather than `&&`: a missing file must not leave a non-zero $? as the shell's exit status
+if [[ -f "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi
